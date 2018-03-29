@@ -3,29 +3,37 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 
 public class DiceRoll {
+	static boolean isRolling = true;
 	public static void main(String[] args){
-		int maxDieSize, diceQuantity;
 		boolean isRolling = true;
 		Scanner reader = new Scanner(System.in);
 		while(isRolling){
-			System.out.println("Hello and Welcome to the Dice Simulator");
-			System.out.println("Tell me what size die do you want?");
-			maxDieSize = reader.nextInt();
-			System.out.println("How many dice would you like to roll");
-			diceQuantity = reader.nextInt();
-			System.out.println("Is this correct?\n"
-					+ "Dice Size: " + maxDieSize
-					+ "\nQuantity of Dice: " + diceQuantity);
+			int diceQuantity, maxDieSize = rollingInformation(reader);
 			rollDice(diceQuantity,maxDieSize);
-			System.out.println("Would you like to play again? Y/N");
-			String playAgain = reader.next();
-			if(playAgain.equals("N")){
-				isRolling = false;
-			}
+			playAgain(reader);
 		System.out.println("Thanks for playing!");
 		reader.close();
 		}
 		
+	}
+	
+	public static int rollingInformation(Scanner reader){
+		System.out.println("Hello and Welcome to the Dice Simulator");
+		System.out.println("Tell me what size die do you want?");
+		int maxDieSize = reader.nextInt();
+		System.out.println("How many dice would you like to roll");
+		int diceQuantity = reader.nextInt();
+		System.out.println("Is this correct?\n"
+				+ "Dice Size: " + maxDieSize
+				+ "\nQuantity of Dice: " + diceQuantity);
+	}
+	
+	public static int getMaxDieSize(int maxDieSize){
+		return maxDieSize;
+	}
+	
+	public static int getDiceQuantity(int diceQuantity){
+		return diceQuantity;
 	}
 	
 	public static void rollDice(int diceQuantity, int diceSize){
@@ -38,6 +46,14 @@ public class DiceRoll {
 			i++;
 			
 			
+		}
+	}
+	
+	public static void playAgain(Scanner reader){
+		System.out.println("Would you like to play again? Y/N");
+		String playAgain = reader.next();
+		if(playAgain.equals("N")){
+			isRolling = false;
 		}
 	}
 }
